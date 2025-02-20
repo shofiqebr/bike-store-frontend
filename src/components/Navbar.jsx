@@ -1,0 +1,75 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import logo from '../assets/logo.png'
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <nav className="bg-white shadow-md fixed top-0 left-0 w-full z-50">
+      <div className="max-w-7xl mx-auto px-4  sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center">
+          {/* Logo */}
+          <Link to="/" className="text-2xl font-bold text-primary flex items-center">
+            <img src={logo} alt="Bike Store" className="h-20 w-auto mr-2" />
+            {/* BikeStore */}
+          </Link>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex space-x-6">
+            <Link to="/" className="text-neutral-700 hover:text-primary transition-colors">Home</Link>
+            <Link to="/bikes" className="text-neutral-700 hover:text-primary transition-colors">Bikes</Link>
+            <Link to="/about" className="text-neutral-700 hover:text-primary transition-colors">About</Link>
+            <Link to="/contact" className="text-neutral-700 hover:text-primary transition-colors">Contact</Link>
+          </div>
+
+          {/* Buttons */}
+          <div className="hidden md:flex space-x-4">
+            <Link to="/login" className="px-4 py-2 border border-primary text-primary rounded hover:bg-primary hover:text-white transition-colors">
+              Login
+            </Link>
+            <Link to="/signup" className="px-4 py-2 bg-primary text-white rounded hover:bg-secondary transition-colors">
+              Sign Up
+            </Link>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-neutral-700 focus:outline-none"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+              </svg>
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden bg-white border-t shadow-md">
+          <div className="flex flex-col items-center space-y-4 py-4">
+            <Link to="/" className="text-neutral-700 hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Home</Link>
+            <Link to="/bikes" className="text-neutral-700 hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Bikes</Link>
+            <Link to="/about" className="text-neutral-700 hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>About</Link>
+            <Link to="/contact" className="text-neutral-700 hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Contact</Link>
+            <Link to="/login" className="w-full text-center px-4 py-2 border border-primary text-primary rounded hover:bg-primary hover:text-white transition-colors" onClick={() => setIsOpen(false)}>
+              Login
+            </Link>
+            <Link to="/signup" className="w-full text-center px-4 py-2 bg-primary text-white rounded hover:bg-secondary transition-colors" onClick={() => setIsOpen(false)}>
+              Sign Up
+            </Link>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;
