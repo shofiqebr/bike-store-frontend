@@ -4,10 +4,10 @@ import Navbar from "../components/Navbar";
 
 const Main = () => {
     return (
-        <div>
+        <div className="max-w-[1920px]">
             <Navbar/>
             <Outlet/>
-        </div>
+            </div>
     );
 };
 
